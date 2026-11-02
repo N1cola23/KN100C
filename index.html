@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 dagen samen - KN</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+.my-message {
+  white-space: pre-line;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #51483f;
+  margin-top: 28px;
+}
+
+.letter-signature {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid #eae3d9;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: #bd786d;
+  text-align: right;
+}
+
+:root {
+  --bg: #faf7f2;
+  --paper: #fffdf9;
+  --ink: #292923;
+  --muted: #888477;
+  --accent: #bd786d;
+  --accent-light: #f3e2dc;
+  --line: #eae3d9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+button, textarea { font: inherit; }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  border-bottom: 1px solid var(--line);
+  background: rgba(250,247,242,.9);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+}
+
+.nav-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero {
+  min-height: 590px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  background:
+    radial-gradient(ellipse at 50% 40%, #f4e6df 0%, transparent 65%);
+}
+
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(58px, 10vw, 105px);
+  font-weight: 500;
+  line-height: 1.05;
+  margin: 22px 0;
+}
+
+.hero h1 span {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 410px;
+  font-size: 15px;
+}
+
+.counter {
+  margin-top: 35px;
+  padding: 16px 32px;
+  border: 1px solid #dfc5bb;
+  border-radius: 50px;
+  background: rgba(255,255,255,.45);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.counter strong {
+  color: var(--accent);
+  font-size: 19px;
+}
+
+.scroll {
+  margin-top: 55px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+section {
+  max-width: 1050px;
+  margin: auto;
+  padding: 85px 25px;
+}
+
+.section-top { margin-bottom: 35px; }
+
+.section-number {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 45px);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.photo {
+  aspect-ratio: 4/5;
+  background: #eee7df;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #998f82;
+  font-size: 12px;
+  text-align: center;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.photo-hint {
+  position: absolute;
+  bottom: 12px;
+  background: rgba(255,255,255,.9);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.games {
+  background: #f1eae1;
+  max-width: none;
+  padding: 85px max(calc((100% - 1000px)/2), 25px);
+}
+
+.game-card {
+  background: var(--paper);
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-top: 22px;
+}
+
+.game-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+}
+
+.game-description {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 5px 0 22px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  border-radius: 30px;
+  padding: 12px 23px;
+  font-size: 13px;
+}
+
+.btn:hover {
+  background: #a96359;
+  transform: translateY(-2px);
+}
+
+.result {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  min-height: 24px;
+}
+
+/* QUIZ */
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quiz-options button {
+  background: #f7f2ec;
+  padding: 13px;
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: 13px;
+  border: 1px solid transparent;
+}
+
+.quiz-options button:hover {
+  border-color: var(--accent);
+}
+
+/* MEMORY */
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 420px;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 29px;
+  display: grid;
+  place-items: center;
+}
+
+.memory-card.flipped, .memory-card.matched {
+  background: #f5eee6;
+}
+
+.memory-card.matched {
+  opacity: .5;
+}
+
+/* DATE IDEE */
+
+.date-box {
+  background: #f6eee9;
+  padding: 25px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.date-emoji { font-size: 35px; }
+
+.date-idea {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  margin: 10px 0 20px;
+}
+
+/* BRIEF */
+
+.letter {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: clamp(25px, 6vw, 55px);
+  border-radius: 5px;
+}
+
+.letter-label {
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  min-height: 260px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  line-height: 1.9;
+  margin-top: 25px;
+}
+
+textarea::placeholder {
+  color: #b3aa9f;
+}
+
+.letter-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 45px 20px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+footer span { color: var(--accent); }
+
+@media(max-width:650px) {
+  nav { padding: 17px 6%; }
+  .hero { min-height: 520px; }
+  section { padding: 65px 20px; }
+  .photo-grid { gap: 8px; }
+  .game-card { padding: 22px 17px; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .memory-grid { gap: 7px; }
+  .games { padding: 65px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Kato & Nicola ♡</div>
+  <div class="nav-label">Voor ons 100dagen samen zijn</div>
+</nav>
+
+<!-- OPENING -->
+
+<header class="hero">
+  <div class="eyebrow">03 november 2026</div>
+
+  <h1>100 dagen<br><span>SAMEN</h1>
+
+  <p>
+    Al 100 dagen maak je me de gelukkigste jongen ooit, To!
+  </p>
+
+  <div class="counter">
+    <strong>100</strong> DAGEN SAMEN &nbsp; · &nbsp; EN NOG ONEINDIG MEER TE GAAN
+  </div>
+
+  <div class="scroll">SCROLL OM TE ONTDEKKEN ↓</div>
+</header>
+
+<!-- FOTO'S -->
+
+<section>
+  <div class="section-top">
+    <div class="section-number">01 / MEMORIES</div>
+    <h2>Een paar momenten.</h2>
+  </div>
+
+  <div class="photo-grid">
+
+    <div class="photo">
+      <img src="IMG_4392.jpeg" alt="Onze eerste foto">
+    </div>
+
+    <div class="photo">
+      <img src="IMG_4441.jpeg" alt="Een mooie herinnering">
+    </div>
+
+    <div class="photo">
+      <img src="IMG_4460.jpeg" alt="Wij twee">
+    </div>
+
+  </div>
+</section>
+
+<!-- SPELLETJES -->
+
+<section class="games">
+  <div class="section-top">
+    <div class="section-number">02 / GAMENNNN!!!!!</div>
+  </div>
+
+  <!-- QUIZ -->
+
+  <div class="game-card">
+    <div class="game-title">Hoe goed kennen we elkaar?</div>
+   
+    <div id="quiz-question" style="font-weight:600;margin-bottom:18px;">
+      Wie stuurde het eerste bericht?
+    </div>
+
+    <div class="quiz-options" id="quiz-options"></div>
+    <div class="result" id="quiz-result"></div>
+    <button class="btn" onclick="nextQuestion()">Volgende vraag →</button>
+  </div>
+
+  <!-- MEMORY -->
+
+  <div class="game-card">
+    <div class="game-title">Memory ♡</div>
+    <p class="game-description">
+      Vind de vier bij elkaar horende paren. Hoe snel lukt het?
+    </p>
+
+    <div class="memory-grid" id="memory-grid"></div>
+    <div class="result" id="memory-result">Gevonden paren: 0 / 4</div>
+    <button class="btn" onclick="startMemory()">Opnieuw spelen</button>
+  </div>
+
+  <!-- DATE GENERATOR -->
+
+  <div class="game-card">
+    <div class="game-title">Wat gaan we samen doen?</div>
+    <p class="game-description">
+      Leuke dingen die we nog kunnen doen
+    </p>
+
+    <div class="date-box">
+      <div class="date-emoji" id="date-emoji">🎲</div>
+      <div class="date-idea" id="date-idea">Klik en ontdek!</div>
+      <button class="btn" onclick="randomDate()">Verrassingsidee</button>
+    </div>
+  </div>
+</section>
+
+<!-- PERSOONLIJKE BRIEF -->
+
+<section>
+  <div class="section-top">
+    <div class="section-number">03 / Al 100-dagen ONS</div>
+    <h2>Lieve Kato,</h2>
+    <p class="subtitle">
+    
+    </p>
+  </div>
+
+  <div class="letter">
+
+  
+<!-- PERSOONLIJKE BRIEF -->
+
+
+
+    <div class="my-message">
+      Wie had dit verwacht?
+      Heel eerlijk gezegd: ikke niet.
+
+      Niet omdat ik dit niet wil of zou willen, maar omdat ik nooit had durven dromen dat jij voor mij zou kiezen, dat jij "ja" zou zeggen op de vraag of je m'n vriendin wilt worden.
+
+      Weet je nog Kato? Dik 100 dagen geleden dat ik je een verzoek stuurde op Snap en ik iets later een gelijkaardig verzoek kreeg op insta, niet wetende wat onze toekomst samen zou brengen en nu nog gaat brengen.
+
+      Je gaat je nooit kunnen inbeelden, Lieve To, hoe een ongeloofelijk belangrijk persoon je bent in m'n leven: Neen, je bent niet alleen m'n vriendin, je bent nog zo zo zoveel meer dan dat: je bent m'n vriendin, en hoe ongeloofelijk trots en blij ik daarom ben, daarnaast ben je de allerbeste vriendin waar ik ooit van zou kunnen dromen, we kunnen letterlijk altijd met elkaar lachen, we begrijpen elkaar, willen en kunnen naar elkaar luisteren: advies geven, hulp bieden of een luisterend oor bieden, dat is ook allemaal geen probleem voor ons.
+
+      Liggen we samen in bed te stinken, zijn we op de manege, zijn we met familie, het maakt me niet uit, zolang ik bij jou in de buurt ben maakt het mij niet uit waar we zijn of wat we doen, jouw aura, het veilige, vertrouwelijke gevoel dat jij me geeft Kato dat is al meer dan voldoende.
+
+      En dan ben ik nog niet eens begonnen over je uiterlijk Kato want o mijn God, je ziet het zelf misschien (helaas) niet altijd, maar je moet me geloven, liefje: je bent letterlijk perfectie, ik ken(de) zoveel mensen, ik heb al zoveel meiden zien passeren waar dan ook maar ik heb nog nooit iemand gezien die zo knap is als jij. Zo'n geweldig mooie ogen, waar ik elke maar dan ook elke keer in verdrink, diezelfde ogen waar je me zo schattig mee kan aankijken als je iets van me nodig hebt :). Maar ook diezelfde ogen die alles zien wat er gebeurt zodat we samen kunnen judgen op alles en iedereen wat er ook maar gebeurt.
+
+      HOWHOWHOW, dacht jij al dat ik ging stoppen over je uiterlijk?! HAHHAHA neen. ik ben net begonnen. Jouw schattige kaakjes, jouw lach, jouw tanden, jouw NEUS, jouw alles letterlijk jij gewoon Kato, je bent zo prachtig en ik vind het zo ongeloofelijk jammer dat jij jezelf nooit zal zien door mijn ogen, hoe ik jou bekijk, zodat je echt kan zien hoeveel ik van je hou en hoeveel je voor mij betekent.
+
+      Ik heb zeker niet de gemakkelijkste tijd achter de rug (en nu ook niet) maar jij maakt zoveel goed, Ik was met m'n ex doodongelukkig en ik zag het echt niet meer goedkomen, maar als je mij op voorhand zei dat dit zou volgen had ik geen second geklaagd, je maakt me zo zo zo gelukkig Kato.
+
+      Ik wist uit de grond van m'n hart niet dat ik zo gelukkig kon zijn. En dat heb ik voor 99.99% aan jou te danken. Hoe je altijd van de eerste seconde weet als er iets scheelt, het vermogen en de capaciteit die je hebt dat je me altijd kan en wilt begrijpen, dat je me kan en wilt helpen en ik hoop dat ik jou die zelfzekerheid ook geef.
+
+      Lieve Kato, ik wil dit alleen met jou, ook al kom ik soms twijfelend over: dat doe ik niet. Ik ben zekerder van dit, van ons dan van het FEIT dat m'n naam Nicola De Wree is.
+
+      Ik wil jou, ik wil EXACT dit, ik wil ons. Ik wil jou, omdat je mij gelukkig maakt op een manier waarin nog nooit iemand geslaagd is en waar ook nooit meer iemand in zal of mag slagen, niemand krijgt deze kans opnieuw, ik stel mezelf nooit meer bij iemand open.
+
+      Je maakt me gelukkig, ik ben gelukkig en ik hoop héél erg dat ik jou ook gelukkig maak. Ik wil dit Kato ik meen het echt, en nee: ik wil dit niet voor een week, voor een maand, "voor 100 dagen". NEEN, ik wil dit voor altijd, ik wil dit, ik wil jou en ik wil ons tot de moment dat ik het laatste beetje zuurstof m'n luchtpijp in trek.
+
+      Ik wil jou voor altijd Lieve To, dat is alles waar ik aan denk, en waarvan ik droom, ik wil geen kerst- of verjaardagscadeau's, geen Sinterklaascadeaus, of Pasen, het boeit me niet, ik wil jou voor altijd, dat is alles wat ik wil.
+
+      Ik mag nooit, maar dan ook nooit meer over iets klagen zolang ik jou nog heb, want iedereen verdient een Kato in zijn/haar leven, zolang het niet mijn To'tje is, vind ik het best.
+
+      Gefeliciteerd met onze 100 dagen liefje, ik hoop vanuit de grond van m'n bodem dat er nog héél héél héél veel dagen bij mogen komen (totdat ik doodval :) ), ik hou super super veel van jou en onthoud To;
+
+      ik wil alleen jou, alleen dit, alleen ons, voor altijd.
+    </div>
+
+
+  </div>
+</section>
+
+
+
+
+<footer>
+  Nicola 
+</footer>
+
+<script>
+
+// FOTO'S TOEVOEGEN
+
+function addPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const box = input.parentElement;
+    let img = box.querySelector('img');
+
+    if (!img) {
+      img = document.createElement('img');
+      box.prepend(img);
+    }
+
+    img.src = e.target.result;
+    box.querySelector('span').style.display = 'none';
+  };
+
+  reader.readAsDataURL(file);
+}
+
+// QUIZ
+
+const questions = [
+  {
+    q: "Wie stuurde het eerste bericht?",
+    a: ["Nicola", "To", "Weet ik niet meer"],
+    correct: 0
+  },
+  {
+    q: "Wat is onze leukste herinnering?",
+    a: ["Onze eerste date", "Onze eerste kus", "Een gewone dag samen"],
+    correct: 1
+  },
+  {
+    q: "Wie is meestal het grappigst?",
+    a: ["Nicola (Natuurlijk)", "To", "Allebei"],
+    correct: 0
+  },
+  {
+    q: "Wat is het leukste aan samen zijn?",
+    a: ["Samen lachen", "Samen dingen doen", "Gewoon elkaar hebben","Alles aan elkaar"],
+    correct: 3
+  }
+];
+
+let questionIndex = 0;
+let score = 0;
+
+function showQuestion() {
+  const q = questions[questionIndex];
+
+  document.getElementById('quiz-question').textContent =
+    q.q;
+
+  const options = document.getElementById('quiz-options');
+  options.innerHTML = '';
+
+  q.a.forEach((answer, index) => {
+    const button = document.createElement('button');
+    button.textContent = answer;
+
+    button.onclick = () => {
+      const buttons = options.querySelectorAll('button');
+      buttons.forEach(b => b.disabled = true);
+
+      if (index === q.correct) {
+        score++;
+        button.style.background = '#dcebdc';
+        document.getElementById('quiz-result').textContent =
+          'Goed bezig! Dat klopt.';
+      } else {
+        button.style.background = '#f3e2dc';
+        document.getElementById('quiz-result').textContent =
+          'Niet helemaal! Het juiste antwoord was: ' +
+          q.a[q.correct];
+      }
+    };
+
+    options.appendChild(button);
+  });
+
+  document.getElementById('quiz-result').textContent = '';
+}
+
+function nextQuestion() {
+  questionIndex++;
+
+  if (questionIndex >= questions.length) {
+    document.getElementById('quiz-question').textContent =
+      'Quiz afgerond! Jouw score: ' + score + '/' + questions.length;
+
+    document.getElementById('quiz-options').innerHTML = '';
+    document.getElementById('quiz-result').textContent =
+      'Tijd om te zien wie de volgende keer wint!';
+
+    questionIndex = 0;
+    score = 0;
+    return;
+  }
+
+  showQuestion();
+}
+
+showQuestion();
+
+// MEMORY GAME
+
+const symbols = ['🌷','☀️','🍓','🌙'];
+let memoryCards = [];
+let flipped = [];
+let matched = 0;
+let locked = false;
+
+function startMemory() {
+  memoryCards = [...symbols, ...symbols]
+    .sort(() => Math.random() - 0.5);
+
+  flipped = [];
+  matched = 0;
+  locked = false;
+
+  document.getElementById('memory-result').textContent =
+    'Gevonden paren: 0 / 4';
+
+  const grid = document.getElementById('memory-grid');
+  grid.innerHTML = '';
+
+  memoryCards.forEach((symbol, index) => {
+    const card = document.createElement('button');
+    card.className = 'memory-card';
+    card.textContent = '?';
+
+    card.onclick = () => flipCard(card, symbol);
+
+    grid.appendChild(card);
+  });
+}
+
+function flipCard(card, symbol) {
+  if (locked || card.classList.contains('flipped') ||
+      card.classList.contains('matched')) return;
+
+  card.textContent = symbol;
+  card.classList.add('flipped');
+  flipped.push(card);
+
+  if (flipped.length === 2) {
+    locked = true;
+
+    if (flipped[0].textContent === flipped[1].textContent) {
+      flipped.forEach(c => c.classList.add('matched'));
+      matched++;
+
+      document.getElementById('memory-result').textContent =
+        'Gevonden paren: ' + matched + ' / 4';
+
+      flipped = [];
+      locked = false;
+
+      if (matched === 4) {
+        document.getElementById('memory-result').textContent =
+          'Gewonnen! Jullie hebben alle paren gevonden! 🎉';
+      }
+    } else {
+      setTimeout(() => {
+        flipped.forEach(c => {
+          c.textContent = '?';
+          c.classList.remove('flipped');
+        });
+
+        flipped = [];
+        locked = false;
+      }, 850);
+    }
+  }
+}
+
+startMemory();
+
+// DATE IDEE GENERATOR
+
+const dateIdeas = [
+  ['🍿', 'Filmavond met onze favoriete snacks'],
+  ['🌅', 'Samen de zonsondergang bekijken'],
+  ['🍕', 'Zelf pizza maken'],
+  ['🎳', 'Een avondje bowlen'],
+  ['🚶', 'Een wandeling zonder bestemming'],
+  ['🧁', 'Samen iets lekkers bakken'],
+  ['🎮', 'Een game-avond organiseren'],
+  ['📸', 'Een fotoshoot van jullie twee'],
+  ['☕', 'Samen ergens iets gaan drinken'],
+  ['🎨', 'Elkaars portret proberen tekenen'],
+  ['🧩', 'Een puzzel samen maken'],
+  ['🌳', 'Een nieuwe plek ontdekken']
+    ['❤️', 'Samen bedrotten'],
+  ['👨‍👩‍👧‍👦', 'Met familie chillen'],
+  ['😂', 'Gekke dingen doen']
+];
+
+function randomDate() {
+  const idea = dateIdeas[
+    Math.floor(Math.random() * dateIdeas.length)
+  ];
+
+  document.getElementById('date-emoji').textContent = idea[0];
+  document.getElementById('date-idea').textContent = idea[1];
+}
+
+// PERSOONLIJKE TEKST
+
+const letter = document.getElementById('myLetter');
+
+letter.value = localStorage.getItem('100dagen-brief') ?? letter.value;
+
+function saveLetter() {
+  localStorage.setItem('100dagen-brief', letter.value);
+
+  document.getElementById('save-result').textContent =
+    'Je tekst is bewaard! ♡';
+}
+
+</script>
+
+</body>
+</html>
